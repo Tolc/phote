@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Phôte - Générateur de fautes</title>
+</head>
+<body>
+    <textarea id="from"></textarea>
+    <textarea id="to"></textarea>
+    <button type="submit" onclick="doIt()">Phôter</button>
+
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript">
+        var doIt = function() {
+            var text = document.getElementById('from').value;
+            document.getElementById('to').value = photeIt(text);
+        }
+    </script>
+</body>
+</html>
