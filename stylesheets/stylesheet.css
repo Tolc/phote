@@ -243,3 +243,26 @@ a {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+
+
+/*Addendum*/
+.form {
+    width: 100%;
+}
+.form::after {
+    clear: both;
+    display: block;
+    content: '';
+}
+textarea {
+    width: 38%;
+    height: 250px;
+    float: left;
+    margin: 0 2% 2% 2%;
+}
+button {
+    width: 15%;
+    float: left;
+    margin-top: 100px;
+}
