@@ -5,15 +5,34 @@
     <title>Phôte - Générateur de fautes</title>
 </head>
 <body>
-    <textarea id="from"></textarea>
+    <textarea id="from">Souvent, quand M. Madeleine passait dans une rue, calme, affectueux, entouré des bénédictions de tous, il arrivait qu'un homme de haute taille, vêtu d'une redingote gris de fer, armé d'une grosse canne et coiffé d'un chapeau rabattu, se retournait brusquement derrière lui, et le suivait des yeux jusqu'à ce qu'il eût disparu, croisant les bras, secouant lentement la tête, et haussant sa lèvre supérieure avec sa lèvre inférieure jusqu'à son nez, sorte de grimace significative qui pourrait se traduire par : « Mais qu'est-ce que c'est que cet homme-là ? - Pour sûr je l'ai vu quelque part. - En tout cas, je ne suis toujours pas sa dupe. »</textarea>
     <textarea id="to"></textarea>
+    <select id="level">
+        <option>1</option>
+        <option selected="selected">2</option>
+        <option>3</option>
+        <option>4</option>
+    </select>
     <button type="submit" onclick="doIt()">Phôter</button>
 
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="js/phote.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/strategies.js"></script>
+    <script type="text/javascript" src="js/strategies/suffixes.js"></script>
+    <script type="text/javascript" src="js/strategies/wholeWords.js"></script>
+    <script type="text/javascript" src="js/strategies/plurals.js"></script>
+    <script type="text/javascript" src="js/strategies/prefixes.js"></script>
+    <script type="text/javascript" src="js/strategies/inWords.js"></script>
     <script type="text/javascript">
         var doIt = function() {
             var text = document.getElementById('from').value;
-            document.getElementById('to').value = photeIt(text);
+            var level = document.getElementById('level').value;
+
+            var options = {
+                level: level,
+                logs: true
+            };
+            document.getElementById('to').value = Phote.photeIt(text, options);
         }
     </script>
 </body>
