@@ -49,7 +49,17 @@
             }
         }
         return currentWord;
+    };
+
+
+    Strategies.Rule = function(level, from, to) {
+        this.level = level;
+        this.from = from;
+        this.to = to ? to : [];
+        this.addTo = function(prct, value) {
+            to.push({prct: prct, value: value});
+        };
     }
 
-
 }(window.Phote = window.Phote || {}, window.Phote.Strategies = window.Phote.Strategies || {}));
+
