@@ -205,7 +205,7 @@ a {
 
 @media screen and (min-width: 64em) {
   .main-content {
-    max-width: 64rem;
+    max-width: 100rem;
     padding: 2rem 6rem;
     margin: 0 auto;
     font-size: 1.1rem; } }
@@ -247,22 +247,31 @@ a {
 
 
 /*Addendum*/
-.form {
-    width: 100%;
-}
-.form::after {
+.central::after {
     clear: both;
     display: block;
     content: '';
 }
-textarea {
+.form {
+    width: 70%;
+}
+.form textarea {
     width: 38%;
     height: 250px;
     float: left;
     margin: 0 2% 2% 2%;
 }
-button {
+.form button {
     width: 15%;
     float: left;
     margin-top: 100px;
+}
+.options {
+    width: 30%;
+    float: left;
+}
+.options input {
+    width: 15px;
+    margin-left: 10px;
+    font-size: 20px;
 }

@@ -8,6 +8,9 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery-ui.min.css" media="screen">
 </head>
 <body>
 <section class="page-header">
@@ -26,10 +29,18 @@
 
     <p>Générateur de fautes</p>
 
-    <div class="form">
-        <textarea id="from"></textarea>
-        <button type="submit" onclick="doIt()">Phôter -></button>
-        <textarea id="to"></textarea>
+    <div class="central">
+        <div class="form">
+            <textarea id="from"></textarea>
+            <button type="submit" onclick="doIt()">Phôter -></button>
+            <textarea id="to"></textarea>
+        </div>
+
+        <div class="options">
+            <label for="level">Niveau d'illettrisme:</label>
+            <input type="text" id="level" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="level-slider"></div>
+        </div>
     </div>
 
 
@@ -42,10 +53,39 @@
 </section>
 
 <script type="text/javascript" src="phote/phote.js"></script>
+<script type="text/javascript" src="phote/utils.js"></script>
+<script type="text/javascript" src="phote/strategies.js"></script>
+<script type="text/javascript" src="phote/rules.js"></script>
+<script type="text/javascript" src="phote/strategies/suffixes.js"></script>
+<script type="text/javascript" src="phote/strategies/wholeWords.js"></script>
+<script type="text/javascript" src="phote/strategies/plurals.js"></script>
+<script type="text/javascript" src="phote/strategies/prefixes.js"></script>
+<script type="text/javascript" src="phote/strategies/inWords.js"></script>
 <script type="text/javascript">
+    $(function() {
+        var levelSlider = $('#level-slider');
+        var levelInput = $('#level');
+        levelSlider.slider({
+            value:2,
+            min: 1,
+            max: 4,
+            step: 1,
+            slide: function(event, ui) {
+                levelInput.val(ui.value);
+            }
+        });
+        levelInput.val(levelSlider.slider('value'));
+    });
+
     var doIt = function() {
         var text = document.getElementById('from').value;
-        document.getElementById('to').value = photeIt(text);
+        var level = document.getElementById('level').value;
+
+        var options = {
+            level: level,
+            logs: true
+        };
+        document.getElementById('to').value = Phote.photeIt(text, options);
     }
 </script>
 </body>
